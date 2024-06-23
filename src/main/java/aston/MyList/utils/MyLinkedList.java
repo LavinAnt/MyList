@@ -4,11 +4,9 @@ package aston.MyList.utils;
 import java.util.Objects;
 
 /**
- * Класс MyLinkedList представляет собой двусвязный список.
- * Он позволяет добавлять, удалять, получать элементы по индексу,
- * изменять элементы по индексу, создавать подсписки и выполнять другие операции.
+ * Реализация LinkedList.
  *
- * @param <T> тип элементов в списке
+ * @param <T> тип элементов, хранящихся в узле
  */
 public class MyLinkedList<T> {
     private final MyLinkedListNode<T> start;  // Начальный узел списка
