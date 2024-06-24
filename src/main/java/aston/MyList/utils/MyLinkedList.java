@@ -172,7 +172,7 @@ public class MyLinkedList<T> {
     /**
      * Создает и возвращает подсписок элементов списка от startIndex до finishIndex.
      *
-     * @param startIndex начальный индекс подсписка
+     * @param startIndex  начальный индекс подсписка
      * @param finishIndex конечный индекс подсписка
      * @return новый экземпляр MyLinkedList, содержащий подсписок элементов
      * @throws IndexOutOfBoundsException если startIndex или finishIndex выходит за границы списка
@@ -190,9 +190,8 @@ public class MyLinkedList<T> {
         }
         MyLinkedList<T> newList = new MyLinkedList<>();
         MyLinkedListNode<T> currentNode = this.getStart().next;
-        for (int i = 0; i < finishIndex; i++)
-        {
-            if (i>=startIndex)
+        for (int i = 0; i < finishIndex; i++) {
+            if (i >= startIndex)
                 newList.add(currentNode.data);
             currentNode = currentNode.next;
         }

@@ -15,7 +15,8 @@ public class MyArrayList<T> {
     /**
      * Конструктор без параметров, инициализирующий список с начальной емкостью по умолчанию.
      */
-    public MyArrayList (){
+    @SuppressWarnings("unchecked")
+    public MyArrayList() {
         this.data = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
@@ -25,9 +26,10 @@ public class MyArrayList<T> {
      * @param capacity начальная емкость списка
      * @throws IllegalArgumentException если указанная емкость меньше 0
      */
-    public MyArrayList (int capacity){
+    @SuppressWarnings("unchecked")
+    public MyArrayList(int capacity) {
         if (capacity < 0)
-            throw new IllegalArgumentException ("Capacity must not be less than 0");
+            throw new IllegalArgumentException("Capacity must not be less than 0");
         this.data = (T[]) new Object[capacity];
     }
 
@@ -54,7 +56,7 @@ public class MyArrayList<T> {
      *
      * @param value элемент для добавления
      */
-    public void add (T value) {
+    public void add(T value) {
         ensureCapacity(size + 1);
         data[size++] = value;
     }
@@ -67,8 +69,8 @@ public class MyArrayList<T> {
      * @param value элемент для добавления
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
-    public void add (int index, T value) {
-        if (index < 0 || index>this.size)
+    public void add(int index, T value) {
+        if (index < 0 || index > this.size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         ensureCapacity(size + 1);
         for (int i = size; i > index; i--) {
@@ -86,13 +88,12 @@ public class MyArrayList<T> {
      * @return удаленный элемент
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
-    public T remove (int index)
-    {
-        if (index < 0 || index>=this.size)
+    public T remove(int index) {
+        if (index < 0 || index >= this.size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         T removingElement = data[index];
-        for (int i = index; i < size ; i++)
-            data[i]=data[i+1];
+        for (int i = index; i < size; i++)
+            data[i] = data[i + 1];
         data[--size] = null;
         return removingElement;
     }
@@ -120,8 +121,8 @@ public class MyArrayList<T> {
      * @return элемент списка
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
-    public T get (int index) {
-        if (index < 0 || index>=this.size)
+    public T get(int index) {
+        if (index < 0 || index >= this.size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         return data[index];
     }
@@ -134,25 +135,23 @@ public class MyArrayList<T> {
      * @return предыдущее значение элемента
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
-    public T set (int index, T value)
-    {
-        if (index < 0 || index>=this.size)
+    public T set(int index, T value) {
+        if (index < 0 || index >= this.size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
-        return data[index]=value;
+        return data[index] = value;
     }
 
     /**
      * Возвращает новый список, содержащий элементы от startIndex (включительно)
      * до finishIndex (не включительно) из текущего списка.
      *
-     * @param startIndex начальный индекс (включительно) подсписка
+     * @param startIndex  начальный индекс (включительно) подсписка
      * @param finishIndex конечный индекс (не включительно) подсписка
      * @return новый список, содержащий указанный подсписок элементов
      * @throws IndexOutOfBoundsException если один из индексов выходит за пределы допустимого диапазона
-     * @throws IllegalArgumentException если startIndex больше finishIndex
+     * @throws IllegalArgumentException  если startIndex больше finishIndex
      */
-    public MyArrayList<T> subList (int startIndex, int finishIndex)
-    {
+    public MyArrayList<T> subList(int startIndex, int finishIndex) {
         if (startIndex < 0 || startIndex >= this.size) {
             throw new IndexOutOfBoundsException("Index: " + startIndex + ", Size: " + this.size);
         }
@@ -162,8 +161,8 @@ public class MyArrayList<T> {
         if (startIndex > finishIndex) {
             throw new IllegalArgumentException("Index: startIndex " + startIndex + " > " + "finishIndex " + finishIndex);
         }
-        MyArrayList <T> newList = new MyArrayList<>();
-        for (int i = startIndex; i < finishIndex ; i++)
+        MyArrayList<T> newList = new MyArrayList<>();
+        for (int i = startIndex; i < finishIndex; i++)
             newList.add(data[i]);
         return newList;
     }
@@ -173,6 +172,7 @@ public class MyArrayList<T> {
      *
      * @param minCapacity минимальная требуемая емкость списка
      */
+    @SuppressWarnings("unchecked")
     private void ensureCapacity(int minCapacity) {
         int currentCapacity = data.length;
         if (minCapacity > currentCapacity) {
@@ -180,7 +180,7 @@ public class MyArrayList<T> {
             if (newCapacity < minCapacity) {
                 newCapacity = minCapacity;
             }
-            T [] newData = (T[]) new Object[newCapacity];
+            T[] newData = (T[]) new Object[newCapacity];
             System.arraycopy(data, 0, newData, 0, size);
             data = newData;
         }
