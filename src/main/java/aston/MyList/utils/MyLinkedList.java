@@ -88,6 +88,7 @@ public class MyLinkedList<T> {
         if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         }
+
         MyLinkedListNode<T> newNode = new MyLinkedListNode<>(data);
         MyLinkedListNode<T> currentNode = getNodeAtIndex(index);
         newNode.previous = currentNode.previous;
@@ -95,6 +96,7 @@ public class MyLinkedList<T> {
         newNode.next = currentNode;
         currentNode.previous = newNode;
         this.size++;
+
         return true;
     }
 
@@ -115,6 +117,7 @@ public class MyLinkedList<T> {
             }
             currentNode = currentNode.next;
         }
+
         return false;
     }
 
@@ -129,10 +132,12 @@ public class MyLinkedList<T> {
         if (index < 0 || index > this.size - 1) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         }
+
         MyLinkedListNode<T> currentNode = getNodeAtIndex(index);
         currentNode.previous.next = currentNode.next;
         currentNode.next.previous = currentNode.previous;
         this.size--;
+
         return true;
     }
 
@@ -147,7 +152,9 @@ public class MyLinkedList<T> {
         if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         }
+
         MyLinkedListNode<T> currentNode = getNodeAtIndex(index);
+
         return currentNode.data;
     }
 
@@ -163,9 +170,11 @@ public class MyLinkedList<T> {
         if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
         }
+
         MyLinkedListNode<T> currentNode = getNodeAtIndex(index);
         T oldData = currentNode.data;
         currentNode.data = data;
+
         return oldData;
     }
 
@@ -188,6 +197,7 @@ public class MyLinkedList<T> {
         if (startIndex > finishIndex) {
             throw new IllegalArgumentException("Index: startIndex " + startIndex + " > " + "finishIndex " + finishIndex);
         }
+
         MyLinkedList<T> newList = new MyLinkedList<>();
         MyLinkedListNode<T> currentNode = this.getStart().next;
         for (int i = 0; i < finishIndex; i++) {
@@ -195,6 +205,7 @@ public class MyLinkedList<T> {
                 newList.add(currentNode.data);
             currentNode = currentNode.next;
         }
+
         return newList;
     }
 
@@ -210,6 +221,7 @@ public class MyLinkedList<T> {
         for (int i = 0; i < index; i++) {
             currentNode = currentNode.next;
         }
+
         return currentNode;
     }
 
@@ -226,6 +238,7 @@ public class MyLinkedList<T> {
             result.append(current.data).append(" ");
             current = current.next;
         }
+
         return result.toString();
     }
 }

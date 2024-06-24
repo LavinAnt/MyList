@@ -28,8 +28,10 @@ public class MyArrayList<T> {
      */
     @SuppressWarnings("unchecked")
     public MyArrayList(int capacity) {
-        if (capacity < 0)
+        if (capacity < 0) {
             throw new IllegalArgumentException("Capacity must not be less than 0");
+        }
+
         this.data = (T[]) new Object[capacity];
     }
 
@@ -70,8 +72,10 @@ public class MyArrayList<T> {
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
     public void add(int index, T value) {
-        if (index < 0 || index > this.size)
+        if (index < 0 || index > this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
+        }
+
         ensureCapacity(size + 1);
         for (int i = size; i > index; i--) {
             data[i] = data[i - 1];
@@ -89,12 +93,15 @@ public class MyArrayList<T> {
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
     public T remove(int index) {
-        if (index < 0 || index >= this.size)
+        if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
+        }
+
         T removingElement = data[index];
         for (int i = index; i < size; i++)
             data[i] = data[i + 1];
         data[--size] = null;
+
         return removingElement;
     }
 
@@ -111,6 +118,7 @@ public class MyArrayList<T> {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -122,8 +130,10 @@ public class MyArrayList<T> {
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
     public T get(int index) {
-        if (index < 0 || index >= this.size)
+        if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
+        }
+
         return data[index];
     }
 
@@ -136,8 +146,10 @@ public class MyArrayList<T> {
      * @throws IndexOutOfBoundsException если индекс выходит за пределы допустимого диапазона
      */
     public T set(int index, T value) {
-        if (index < 0 || index >= this.size)
+        if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + this.size);
+        }
+
         return data[index] = value;
     }
 
@@ -161,9 +173,11 @@ public class MyArrayList<T> {
         if (startIndex > finishIndex) {
             throw new IllegalArgumentException("Index: startIndex " + startIndex + " > " + "finishIndex " + finishIndex);
         }
+
         MyArrayList<T> newList = new MyArrayList<>();
         for (int i = startIndex; i < finishIndex; i++)
             newList.add(data[i]);
+
         return newList;
     }
 
@@ -201,6 +215,7 @@ public class MyArrayList<T> {
                 sb.append(" ");
             }
         }
+
         return sb.toString();
     }
 }

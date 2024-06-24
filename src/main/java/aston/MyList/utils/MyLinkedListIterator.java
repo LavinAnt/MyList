@@ -23,10 +23,11 @@ public class MyLinkedListIterator<T> {
      * @return {@code true}, если следующий элемент существует, иначе {@code false}
      */
     public boolean hasNext() {
-        if (data != null)
+        if (data != null) {
             return data.next != null;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
